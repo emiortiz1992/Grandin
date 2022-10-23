@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using TPI_UNLAM_Backend.Utils;
 
 #nullable disable
 
@@ -20,7 +21,7 @@ namespace TIP_UNLAM_Backend.Data.EF
         public virtual DbSet<Colore> Colores { get; set; }
         public virtual DbSet<Genero> Generos { get; set; }
         public virtual DbSet<Juego> Juegos { get; set; }
-        public virtual DbSet<Nota> Notas { get; set; }
+        public virtual DbSet<Llamada> Llamadas { get; set; }
         public virtual DbSet<ProgresosXusuarioXjuego> ProgresosXusuarioXjuegos { get; set; }
         public virtual DbSet<TipoUsuario> TipoUsuarios { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
@@ -31,7 +32,7 @@ namespace TIP_UNLAM_Backend.Data.EF
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-TT83BPI;Database=TPI_UNLAM_DB_;Integrated Security=True;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(Configuraciones.ConexionDB);
             }
         }
 
@@ -87,7 +88,7 @@ namespace TIP_UNLAM_Backend.Data.EF
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<Nota>(entity =>
+            modelBuilder.Entity<Llamada>(entity =>
             {
                 entity.Property(e => e.CodigoLlamada)
                     .HasMaxLength(150)
@@ -104,12 +105,12 @@ namespace TIP_UNLAM_Backend.Data.EF
                 entity.Property(e => e.ProfesionalId).HasColumnName("Profesional_Id");
 
                 entity.HasOne(d => d.Paciente)
-                    .WithMany(p => p.NotaPacientes)
+                    .WithMany(p => p.LlamadaPacientes)
                     .HasForeignKey(d => d.PacienteId)
                     .HasConstraintName("FK_PacienteId_Notas");
 
                 entity.HasOne(d => d.Profesional)
-                    .WithMany(p => p.NotaProfesionals)
+                    .WithMany(p => p.LlamadaProfesionals)
                     .HasForeignKey(d => d.ProfesionalId)
                     .HasConstraintName("FK_ProfesionalId_Notas");
             });

@@ -169,8 +169,6 @@ namespace TPI_UNLAM_Backend.Servicios
 
         }
 
-     
-
         #region Validaciones
         private Boolean ValidateEmail(String email)
         {
