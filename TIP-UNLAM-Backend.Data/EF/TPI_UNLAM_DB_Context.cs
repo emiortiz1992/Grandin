@@ -19,6 +19,8 @@ namespace TIP_UNLAM_Backend.Data.EF
         }
 
         public virtual DbSet<Colore> Colores { get; set; }
+        public virtual DbSet<Direccione> Direcciones { get; set; }
+        public virtual DbSet<Genero> Generos { get; set; }
         public virtual DbSet<Juego> Juegos { get; set; }
         public virtual DbSet<Nota> Notas { get; set; }
         public virtual DbSet<ProgresosXusuarioXjuego> ProgresosXusuarioXjuegos { get; set; }
@@ -52,6 +54,28 @@ namespace TIP_UNLAM_Backend.Data.EF
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<Direccione>(entity =>
+            {
+                entity.Property(e => e.Direccion)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Usuario)
+                    .WithMany(p => p.Direcciones)
+                    .HasForeignKey(d => d.UsuarioId)
+                    .HasConstraintName("FK__Direccion__Usuar__1AD3FDA4");
+            });
+
+            modelBuilder.Entity<Genero>(entity =>
+            {
+                entity.ToTable("Genero");
+
+                entity.Property(e => e.Descripcion)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<Juego>(entity =>
             {
                 entity.HasIndex(e => e.Codigo, "codigo")
@@ -79,6 +103,10 @@ namespace TIP_UNLAM_Backend.Data.EF
 
             modelBuilder.Entity<Nota>(entity =>
             {
+                entity.Property(e => e.CodigoLlamada)
+                    .HasMaxLength(150)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Fecha).HasColumnType("datetime");
 
                 entity.Property(e => e.Memo)
@@ -180,6 +208,11 @@ namespace TIP_UNLAM_Backend.Data.EF
                     .IsUnicode(false);
 
                 entity.Property(e => e.TipoUsuarioId).HasColumnName("TIpoUsuarioId");
+
+                entity.HasOne(d => d.Genero)
+                    .WithMany(p => p.Usuarios)
+                    .HasForeignKey(d => d.GeneroId)
+                    .HasConstraintName("FK__Usuarios__Genero__17F790F9");
 
                 entity.HasOne(d => d.TipoUsuario)
                     .WithMany(p => p.Usuarios)
