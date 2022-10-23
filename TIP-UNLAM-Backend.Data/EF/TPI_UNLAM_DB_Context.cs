@@ -58,6 +58,11 @@ namespace TIP_UNLAM_Backend.Data.EF
                 entity.Property(e => e.Direccion)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.Usuario)
+                    .WithMany(p => p.Direcciones)
+                    .HasForeignKey(d => d.UsuarioId)
+                    .HasConstraintName("FK__Direccion__Usuar__1AD3FDA4");
             });
 
             modelBuilder.Entity<Genero>(entity =>
@@ -202,6 +207,11 @@ namespace TIP_UNLAM_Backend.Data.EF
                     .IsUnicode(false);
 
                 entity.Property(e => e.TipoUsuarioId).HasColumnName("TIpoUsuarioId");
+
+                entity.HasOne(d => d.Genero)
+                    .WithMany(p => p.Usuarios)
+                    .HasForeignKey(d => d.GeneroId)
+                    .HasConstraintName("FK__Usuarios__Genero__17F790F9");
 
                 entity.HasOne(d => d.TipoUsuario)
                     .WithMany(p => p.Usuarios)
