@@ -18,9 +18,9 @@ namespace TPI_UNLAM_Backend.Controllers.v1
         }
 
         [HttpPost("api/v1/agregarUsuario")]
-        public void agregarUsuario([FromBody] UsuarioDto usuario)
+        public void agregarUsuario([FromBody] UsuarioDto usuario, List<Direccione> direcciones)
         {
-            _usuarioServicio.AgregarUsuario(usuario);
+            _usuarioServicio.AgregarUsuario(usuario, direcciones);
         }
 
 
