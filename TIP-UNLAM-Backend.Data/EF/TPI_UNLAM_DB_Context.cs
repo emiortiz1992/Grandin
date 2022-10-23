@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using TPI_UNLAM_Backend.Utils;
 
 #nullable disable
 
@@ -21,7 +20,8 @@ namespace TIP_UNLAM_Backend.Data.EF
         public virtual DbSet<Colore> Colores { get; set; }
         public virtual DbSet<Genero> Generos { get; set; }
         public virtual DbSet<Juego> Juegos { get; set; }
-        public virtual DbSet<Llamada> Llamadas { get; set; }
+        public virtual DbSet<Llamadum> Llamada { get; set; }
+        public virtual DbSet<Nota> Notas { get; set; }
         public virtual DbSet<ProgresosXusuarioXjuego> ProgresosXusuarioXjuegos { get; set; }
         public virtual DbSet<TipoUsuario> TipoUsuarios { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
@@ -32,7 +32,7 @@ namespace TIP_UNLAM_Backend.Data.EF
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer(Configuraciones.ConexionDB);
+                optionsBuilder.UseSqlServer("Server=DESKTOP-TT83BPI;Database=TPI_UNLAM_DB_;Integrated Security=True;Trusted_Connection=True;");
             }
         }
 
@@ -88,31 +88,51 @@ namespace TIP_UNLAM_Backend.Data.EF
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<Llamada>(entity =>
+            modelBuilder.Entity<Llamadum>(entity =>
             {
-                entity.Property(e => e.CodigoLlamada)
-                    .HasMaxLength(150)
+                entity.Property(e => e.Codigo)
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Fecha).HasColumnType("datetime");
-
-                entity.Property(e => e.Memo)
-                    .HasMaxLength(500)
-                    .IsUnicode(false);
 
                 entity.Property(e => e.PacienteId).HasColumnName("Paciente_Id");
 
                 entity.Property(e => e.ProfesionalId).HasColumnName("Profesional_Id");
 
                 entity.HasOne(d => d.Paciente)
-                    .WithMany(p => p.LlamadaPacientes)
+                    .WithMany(p => p.LlamadumPacientes)
                     .HasForeignKey(d => d.PacienteId)
-                    .HasConstraintName("FK_PacienteId_Notas");
+                    .HasConstraintName("FK_PacienteId_Llamada");
 
                 entity.HasOne(d => d.Profesional)
-                    .WithMany(p => p.LlamadaProfesionals)
+                    .WithMany(p => p.LlamadumProfesionals)
                     .HasForeignKey(d => d.ProfesionalId)
-                    .HasConstraintName("FK_ProfesionalId_Notas");
+                    .HasConstraintName("FK_ProfesionalId_Llamada");
+            });
+
+            modelBuilder.Entity<Nota>(entity =>
+            {
+                entity.Property(e => e.Fecha).HasColumnType("datetime");
+
+                entity.Property(e => e.Mensaje)
+                    .HasMaxLength(300)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Llamada)
+                    .WithMany(p => p.Nota)
+                    .HasForeignKey(d => d.LlamadaId)
+                    .HasConstraintName("FK_llamdaID_Notas");
+
+                entity.HasOne(d => d.Paciente)
+                    .WithMany(p => p.NotaPacientes)
+                    .HasForeignKey(d => d.PacienteId)
+                    .HasConstraintName("FK_PacienteId_Nota");
+
+                entity.HasOne(d => d.Profesional)
+                    .WithMany(p => p.NotaProfesionals)
+                    .HasForeignKey(d => d.ProfesionalId)
+                    .HasConstraintName("FK_ProfesionalId_Nota");
             });
 
             modelBuilder.Entity<ProgresosXusuarioXjuego>(entity =>

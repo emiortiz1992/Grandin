@@ -38,11 +38,20 @@ namespace TIP_UNLAM_Backend.Data.Repositorios
             return _ctx.Notas.Where(x => x.PacienteId == pacienteId && x.ProfesionalId == usuario.Id).ToList();
         }
 
+        public Nota getNotaXLlamado(int llamadaId)
+        {
+            return _ctx.Notas.Where(x => x.LlamadaId == llamadaId).FirstOrDefault();
+        }
+
+        public List<Nota> GetAllNotasXProfesional(Usuario usuario)
+        {
+            return _ctx.Notas.Where(x => x.ProfesionalId == usuario.Id).ToList();
+        }
         public void SaveChanges()
         {
             _ctx.SaveChanges();
         }
 
-     
+
     }
 }

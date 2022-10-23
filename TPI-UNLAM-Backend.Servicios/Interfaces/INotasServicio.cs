@@ -12,6 +12,8 @@ namespace TPI_UNLAM_Backend.Servicios.Interfaces
         public void SaveChanges();
         public List<Nota> GetAllNotasXPacienteXProfesional(int pacienteId);
         public void EliminarNota(int notaId);
-        public void GuardarNota(Nota nota);
+        public void GuardarNota(Nota nota, string codigoLlamada);
+        public List<Nota> GetAllNotasXProfesional();
+        public Nota getNotaXLlamado(int llamadaId);
     }
 }

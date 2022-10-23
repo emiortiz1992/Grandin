@@ -13,15 +13,17 @@ namespace TPI_UNLAM_Backend.Servicios
     public class NotasServicio : INotasServicio
     {
         private INotasRepositorio _notaRepositorio;
+        private ILlamadasRepositorios _llamadaRepositorio;
         private IAppSharedFunction _appSharedFunction;
         private IUsuarioXUsuarioRepositorio _userXUsuarioRepo;
         private IUsuarioRepositorio _userRepo;
-        public NotasServicio(INotasRepositorio notaRepositorio, IUsuarioXUsuarioRepositorio userXUsuarioRepo, IUsuarioRepositorio userRepo, IAppSharedFunction appSharedFunction)
+        public NotasServicio(INotasRepositorio notaRepositorio, IUsuarioXUsuarioRepositorio userXUsuarioRepo, IUsuarioRepositorio userRepo, IAppSharedFunction appSharedFunction, ILlamadasRepositorios llamadaRepositorio)
         {
             _notaRepositorio = notaRepositorio;
             _userXUsuarioRepo = userXUsuarioRepo;
             _userRepo = userRepo;
             _appSharedFunction = appSharedFunction;
+            _llamadaRepositorio = llamadaRepositorio;
         }
 
         public void EliminarNota(int notaId)
@@ -52,12 +54,29 @@ namespace TPI_UNLAM_Backend.Servicios
             return _notaRepositorio.GetAllNotasXPacienteXProfesional(pacienteId, usuario);
         }
 
-        public void GuardarNota(Nota nota)
+        public List<Nota> GetAllNotasXProfesional()
+        {
+            string email = _appSharedFunction.GetUsuarioPorToken();
+            Usuario usuario = _userRepo.getUsuarioByEmail(email);
+
+            return _notaRepositorio.GetAllNotasXProfesional(usuario);
+        }
+
+        public void GuardarNota(Nota nota, string codigoLlamada)
         {
             if (nota.ProfesionalId == null || nota.PacienteId == null)
                 throw new BadRequestException("Los campos no pueden ser nulos");
+
+            Llamadum llamado = _llamadaRepositorio.GetLlamadaByCodigo(codigoLlamada);
+            nota.LlamadaId = llamado.Id;
+
             _notaRepositorio.GuardarNota(nota);
             _notaRepositorio.SaveChanges();
+        }
+
+        public Nota getNotaXLlamado(int llamadaId)
+        {
+            return _notaRepositorio.getNotaXLlamado(llamadaId);
         }
 
         public void SaveChanges()
