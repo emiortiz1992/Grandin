@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using TPI_UNLAM_Backend.Utils;
 
 #nullable disable
 
@@ -19,6 +18,8 @@ namespace TIP_UNLAM_Backend.Data.EF
         }
 
         public virtual DbSet<Colore> Colores { get; set; }
+        public virtual DbSet<Direccione> Direcciones { get; set; }
+        public virtual DbSet<Genero> Generos { get; set; }
         public virtual DbSet<Juego> Juegos { get; set; }
         public virtual DbSet<Nota> Notas { get; set; }
         public virtual DbSet<ProgresosXusuarioXjuego> ProgresosXusuarioXjuegos { get; set; }
@@ -31,7 +32,7 @@ namespace TIP_UNLAM_Backend.Data.EF
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer(Configuraciones.ConexionDB);
+                optionsBuilder.UseSqlServer("Server=DESKTOP-TT83BPI;Database=TPI_UNLAM_DB_;Integrated Security=True;Trusted_Connection=True;");
             }
         }
 
@@ -47,6 +48,23 @@ namespace TIP_UNLAM_Backend.Data.EF
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hexadecimal)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Direccione>(entity =>
+            {
+                entity.Property(e => e.Direccion)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Genero>(entity =>
+            {
+                entity.ToTable("Genero");
+
+                entity.Property(e => e.Descripcion)
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
@@ -79,6 +97,10 @@ namespace TIP_UNLAM_Backend.Data.EF
 
             modelBuilder.Entity<Nota>(entity =>
             {
+                entity.Property(e => e.CodigoLlamada)
+                    .HasMaxLength(150)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Fecha).HasColumnType("datetime");
 
                 entity.Property(e => e.Memo)

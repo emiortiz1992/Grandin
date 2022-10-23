@@ -12,6 +12,7 @@ namespace TIP_UNLAM_Backend.Data.EF
         public int? PacienteId { get; set; }
         public string Memo { get; set; }
         public DateTime Fecha { get; set; }
+        public string CodigoLlamada { get; set; }
 
         public virtual Usuario Paciente { get; set; }
         public virtual Usuario Profesional { get; set; }
