@@ -16,6 +16,7 @@ using TIP_UNLAM_Backend.Data.EF;
 using TIP_UNLAM_Backend.Data.Repositorios;
 using TIP_UNLAM_Backend.Data.Repositorios.Interfaces;
 using TPI_UNLAM_Backend.Exceptions;
+using TPI_UNLAM_Backend.Hubs;
 using TPI_UNLAM_Backend.Servicios;
 using TPI_UNLAM_Backend.Servicios.Interfaces;
 
@@ -37,7 +38,7 @@ namespace TPI_UNLAM_Backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHttpContextAccessor(); //Para poder acceder al contexto dentro de una clase
-
+            services.AddSignalR(); // agregamos servicio SignalR
             services.AddControllers();
             services.AddTransient<TPI_UNLAM_DB_Context>();
             services.AddScoped<IJuegoServicio, JuegoServicio>();
@@ -90,13 +91,23 @@ namespace TPI_UNLAM_Backend
             //agrego servicio de CORS
             services.AddCors(options =>
             {
-                options.AddPolicy(_myCors, builder =>
+                //options.AddPolicy(_myCors, builder =>
+                //{
+                //    builder
+                //        .AllowAnyOrigin()
+                //        .AllowAnyMethod()
+                //        .AllowAnyHeader();
+
+                //});
+
+                options.AddDefaultPolicy(builder => 
                 {
-                    builder
-                        .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader();
+                    builder.WithOrigins("http://localhost:3000", "https://localhost:3000")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials();
                 });
+               
             });
 
             services.AddMvc(config =>
@@ -123,7 +134,7 @@ namespace TPI_UNLAM_Backend
             }
 
             //agrego servicio de CORS
-            app.UseCors(_myCors);
+            app.UseCors();
 
             app.UseHttpsRedirection();
 
@@ -131,11 +142,14 @@ namespace TPI_UNLAM_Backend
 
             app.UseAuthorization();
             app.UseAuthentication();
+            app.UseWebSockets();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<MessageHub>("/message"); //agrego hub de SignalR
             });
+            
         }
 
         public class ApiExplorerGroupPerVersionConvention : IControllerModelConvention
