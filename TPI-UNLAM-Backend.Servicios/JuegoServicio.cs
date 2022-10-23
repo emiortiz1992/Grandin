@@ -30,32 +30,41 @@ namespace TPI_UNLAM_Backend.Servicios
 
         public void FinalizarJuego(ResultadoJuegoDto juego)
         {
-            if (juego == null)
-                throw new BadRequestException("No se enviaron los campos");
+            try
+            {
+                if (juego == null)
+                    throw new BadRequestException("No se enviaron los campos");
 
-            if (_juegoRepo.getJuegoById(juego.JuegoId) == null)
-                throw new BadRequestException("No existe juego");
+                if (_juegoRepo.getJuegoById(juego.JuegoId) == null)
+                    throw new BadRequestException("No existe juego");
 
-            string emailUsuarioLogueado = _appSharedFunction.GetUsuarioPorToken();
+                string emailUsuarioLogueado = _appSharedFunction.GetUsuarioPorToken();
 
-            if (_userRepo.getUsuarioByEmail(emailUsuarioLogueado) == null)
-                throw new BadRequestException("No existe usuario");
+                if (_userRepo.getUsuarioByEmail(emailUsuarioLogueado) == null)
+                    throw new BadRequestException("No existe usuario");
 
-            Usuario usuarioLogueado = _userRepo.getUsuarioByEmail(emailUsuarioLogueado);
-            UsuarioXusuario userPro = _userXuserRepo.getProfesionalXPaciente(usuarioLogueado.Id);
-            ProgresosXusuarioXjuego ProgresoObj = new ProgresosXusuarioXjuego();
+                Usuario usuarioLogueado = _userRepo.getUsuarioByEmail(emailUsuarioLogueado);
+                UsuarioXusuario userPro = _userXuserRepo.getProfesionalXPaciente(usuarioLogueado.Id);
+                ProgresosXusuarioXjuego ProgresoObj = new ProgresosXusuarioXjuego();
 
-            ProgresoObj.FechaFinalizacion = juego.FechaFinalizacion;
-            ProgresoObj.FechaInicio = juego.FechaInicio;
-            ProgresoObj.JuegoId = juego.JuegoId;
-            ProgresoObj.UsuarioId = usuarioLogueado.Id;
-            ProgresoObj.Finalizado = juego.Finalizado;
-            ProgresoObj.Aciertos = juego.Aciertos;
-            ProgresoObj.Desaciertos = juego.Desaciertos;
-            ProgresoObj.ProfesionalId = userPro.UsuarioProfesionalId;
+                ProgresoObj.FechaFinalizacion = juego.FechaFinalizacion;
+                ProgresoObj.FechaInicio = juego.FechaInicio;
+                ProgresoObj.JuegoId = juego.JuegoId;
+                ProgresoObj.UsuarioId = usuarioLogueado.Id;
+                ProgresoObj.Finalizado = juego.Finalizado;
+                ProgresoObj.Aciertos = juego.Aciertos;
+                ProgresoObj.Desaciertos = juego.Desaciertos;
+                ProgresoObj.ProfesionalId = userPro.UsuarioProfesionalId;
 
-            _juegoRepo.FinalizarJuego(ProgresoObj);
-            _juegoRepo.SaveChanges();
+                _juegoRepo.FinalizarJuego(ProgresoObj);
+                _juegoRepo.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
         }
 
         public List<Colore> getAllColores()

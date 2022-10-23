@@ -16,7 +16,28 @@ namespace TPI_UNLAM_Backend.Controllers.v1
         {
             _juegoServicio = juegoServicio;
         }
+        #region Post
 
+        [HttpPost("api/v1/ValidarCamposIguales")]
+        public bool ValidarCamposIguales(string campo1, string campo2)
+        {
+            return _juegoServicio.validarStringIguales(campo1, campo2);
+        }
+
+        [HttpPost("api/v1/VerificarNumerosOrdenados")]
+        public bool VerificiarNumerosOrdenados(List<int> numeros)
+        {
+            return _juegoServicio.verificarNumerosOrdenados(numeros);
+        }
+
+        [HttpPost("api/v1/FinalizarJuego")]
+        public void FinalizarJuego([FromBody] ResultadoJuegoDto juego)
+        {
+            _juegoServicio.FinalizarJuego(juego);
+        }
+
+        #endregion
+        #region Get
         [HttpGet("api/v1/getAllJuegos")]
         public ActionResult<List<Juego>> GetAllJuegos()
         {
@@ -29,28 +50,10 @@ namespace TPI_UNLAM_Backend.Controllers.v1
             return _juegoServicio.getAllColores();
         }
 
-        [HttpPost("api/v1/ValidarCamposIguales")]
-        public bool ValidarCamposIguales(string campo1, string campo2)
-        {
-            return _juegoServicio.validarStringIguales(campo1, campo2);
-        }
-
         [HttpGet("api/v1/getNumerosDesordenados")]
-        public ActionResult<List<int>> GetNumerosDesordenados() 
+        public ActionResult<List<int>> GetNumerosDesordenados()
         {
             return _juegoServicio.getNumerosDesordenados();
-        }
-        
-        [HttpPost("api/v1/VerificarNumerosOrdenados")]
-        public bool VerificiarNumerosOrdenados(List<int> numeros)
-        {
-            return _juegoServicio.verificarNumerosOrdenados(numeros);
-        }
-
-        [HttpPost("api/v1/FinalizarJuego")]
-        public void FinalizarJuego([FromBody]ResultadoJuegoDto juego)
-        {
-            _juegoServicio.FinalizarJuego(juego);
         }
 
         [HttpGet("api/v1/getImagenesPorJuego")]
@@ -64,6 +67,8 @@ namespace TPI_UNLAM_Backend.Controllers.v1
         {
             return _juegoServicio.getJuegoById(idJuego);
         }
+
+        #endregion
 
     }
 }
