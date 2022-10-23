@@ -10,7 +10,7 @@ namespace TPI_UNLAM_Backend.Servicios.Interfaces
 {
     public interface IUsuarioServicio
     {
-        public string AgregarUsuario(UsuarioDto usuario, List<Direccione> direcciones);
+        public string AgregarUsuario(UsuarioDto usuario);
         public Usuario getUsuarioByEmail(string email);
         public Usuario getUsuarioById(int id);
         public UsuarioDto Login(LoginDto loginDto);
@@ -24,6 +24,5 @@ namespace TPI_UNLAM_Backend.Servicios.Interfaces
         public List<Usuario> getAllUsuariosPacientesActivos();
         public List<Usuario> getAllUsuariosPacientesInactivos();
         public List<Usuario> getAllUsuariosPacientes();
-        public void AgregarDireccion(List<Direccione> direcciones, UsuarioDto usuario);
     }
 }

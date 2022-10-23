@@ -29,7 +29,7 @@ namespace TPI_UNLAM_Backend.Servicios
             _userXUsuarioRepo = userXUsuarioRepo;
         }
 
-        public string AgregarUsuario(UsuarioDto usuario, List<Direccione> direcciones)
+        public string AgregarUsuario(UsuarioDto usuario)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace TPI_UNLAM_Backend.Servicios
                 userNuevo.Dni = usuario.usuario.Dni;
                 userNuevo.Telefono = usuario.usuario.Telefono;
                 userNuevo.GeneroId = usuario.usuario.Genero.Id;
-
+                userNuevo.Direccion = usuario.usuario.Direccion;
                 if (String.IsNullOrEmpty(usuario.usuario.Matricula))
                 {
                     userNuevo.TipoUsuarioId = 1;
@@ -71,7 +71,7 @@ namespace TPI_UNLAM_Backend.Servicios
                 _userRepo.SaveChanges();
 
                 agregarRelacion(usuario);
-                AgregarDireccion(direcciones, usuario);
+                
 
                 return "El usuario se registro correctamente"; ;
             }
@@ -82,17 +82,7 @@ namespace TPI_UNLAM_Backend.Servicios
            
         }
 
-        public void AgregarDireccion (List<Direccione> direcciones, UsuarioDto usuario)
-        {
-            Direccione direc = new Direccione();
-
-            foreach (var item in direcciones)
-            {
-                direc.Direccion = item.Direccion;
-                direc.UsuarioId = usuario.usuario.Id;
-            }
-            _userRepo.SaveChanges();
-        }
+      
 
         public void modificarUsuario(Usuario usuario)
         {
