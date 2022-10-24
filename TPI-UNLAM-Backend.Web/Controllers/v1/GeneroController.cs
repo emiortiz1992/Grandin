@@ -9,11 +9,12 @@ using TPI_UNLAM_Backend.Servicios.Interfaces;
 
 namespace TPI_UNLAM_Backend.Controllers.v1
 {
+    [ApiController]
     public class GeneroController : Controller
     {
         private readonly IGeneroServicio _generoServicio;
 
-        public GeneroController(GeneroServicio generoServicio)
+        public GeneroController(IGeneroServicio generoServicio)
         {
             _generoServicio = generoServicio;
         }
