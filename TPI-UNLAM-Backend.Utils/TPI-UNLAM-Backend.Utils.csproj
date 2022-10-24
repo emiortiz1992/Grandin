@@ -5,4 +5,8 @@
     <RootNamespace>TPI_UNLAM_Backend.Utils</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Common" Version="5.0.17" />
+  </ItemGroup>
+
 </Project>

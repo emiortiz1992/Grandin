@@ -30,7 +30,7 @@ namespace TPI_UNLAM_Backend.Controllers.v1
             return Ok();
         }
         [HttpPost("api/v1/llamadaSaliente")]
-        public async Task<IActionResult> startHubConnection2(string message)
+        public async Task<IActionResult> startHubConnection2([FromBody]string message)
         {
             await _hubContext.Clients.All.SendAsync("sendMessage", message);
             return Ok();
@@ -40,6 +40,12 @@ namespace TPI_UNLAM_Backend.Controllers.v1
         public void GuardarLlamada([FromBody] LlamadaDto llamada)
         {
             _llamadaServicio.GuardarLlamada(llamada);
+        }
+
+        [HttpGet("api/v1/obtenerLlamada")]
+        public void obtenerLlamada()
+        {
+             
         }
 
     }

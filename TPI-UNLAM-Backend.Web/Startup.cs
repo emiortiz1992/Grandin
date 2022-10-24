@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -57,6 +58,8 @@ namespace TPI_UNLAM_Backend
 
             services.AddScoped<INotasServicio,NotasServicio>();
             services.AddScoped<INotasRepositorio, NotasRepositorio>(); 
+
+            
 
             
 

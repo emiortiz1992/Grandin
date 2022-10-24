@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.SecurityTokenService;
+﻿using Microsoft.AspNetCore.SignalR;
+using Microsoft.IdentityModel.SecurityTokenService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace TPI_UNLAM_Backend.Servicios
         private IUsuarioRepositorio _userRepo;
         private ILlamadasRepositorios _llamadaRepo;
         private INotasRepositorio _notaRepo;
+        
 
 
         public LlamadaServicio(INotasRepositorio notaRepositorio, IUsuarioXUsuarioRepositorio userXUsuarioRepo, IUsuarioRepositorio userRepo, IAppSharedFunction appSharedFunction, ILlamadasRepositorios llamadaRepo, INotasRepositorio notaRepo)
@@ -29,6 +31,7 @@ namespace TPI_UNLAM_Backend.Servicios
             _appSharedFunction = appSharedFunction;
             _llamadaRepo = llamadaRepo;
             _notaRepo = notaRepo;
+            
         }
 
         public LlamadaDto GetAllNotaXLlamada(int llamadaId)
@@ -59,6 +62,8 @@ namespace TPI_UNLAM_Backend.Servicios
             _llamadaRepo.SaveChanges();
 
         }
+
+      
 
         public void SaveChanges()
         {
