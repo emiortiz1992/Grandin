@@ -41,6 +41,8 @@ namespace TPI_UNLAM_Backend
             services.AddSignalR(); // agregamos servicio SignalR
             services.AddControllers();
             services.AddTransient<TPI_UNLAM_DB_Context>();
+            services.AddScoped<IGeneroServicio, GeneroServicio>();
+            services.AddScoped<IGeneroRepositorio, GeneroRepositorio>();
             services.AddScoped<IJuegoServicio, JuegoServicio>();
             services.AddScoped<IJuegoRepositorio, JuegoRepositorio>();
             services.AddScoped<IUsuarioServicio, UsuarioServicio>();
@@ -49,8 +51,8 @@ namespace TPI_UNLAM_Backend
             services.AddScoped<IUsuarioXUsuarioRepositorio, UsuarioXUsuarioRepositorio>();
             services.AddScoped<IProgresosXUsuarioXJuegoRepositorio, ProgresosXUsuarioXJuegoRepositorio>();
             services.AddScoped<IProgresosXUsuarioXJuegoServicio, ProgresosXUsuarioXJuegoServicio>();
-            services.AddScoped<INotasServicio, NotasServicio>();
-            services.AddScoped<INotasRepositorio, NotasRepositorio>();
+            //services.AddScoped<INotasServicio, NotasServicio>();
+            //services.AddScoped<ILlamadasRepositorio, NotasRepositorio>();
 
             services.AddSingleton<IAppSharedFunction, AppSharedFunction>();
 

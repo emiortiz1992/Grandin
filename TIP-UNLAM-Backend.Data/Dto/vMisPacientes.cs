@@ -12,6 +12,8 @@ namespace TIP_UNLAM_Backend.Data.Procedure
         public int PacienteId { get; set; }
         public string PacienteNombre { get; set; }
         public string PacienteApellido { get; set; }
+        public DateTime FechaNacimiento { get; set; }
+        public string Direccion { get; set; }
         public string NombreTutor { get; set; }
         public string Telefono { get; set; }
         public string Mail { get; set; }

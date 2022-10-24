@@ -15,6 +15,8 @@ namespace TIP_UNLAM_Backend.Data.Repositorios.Interfaces
         public void EliminarNota(Nota nota);
         public void GuardarNota(Nota nota);
         public Nota getNotaById(int id);
+        public List<Nota> GetAllNotasXProfesional(Usuario usuario);
+        public Nota getNotaXLlamado(int llamadaId);
 
     }
 }

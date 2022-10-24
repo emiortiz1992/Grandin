@@ -9,6 +9,8 @@ namespace TIP_UNLAM_Backend.Data.EF
     {
         public Usuario()
         {
+            LlamadumPacientes = new HashSet<Llamadum>();
+            LlamadumProfesionals = new HashSet<Llamadum>();
             NotaPacientes = new HashSet<Nota>();
             NotaProfesionals = new HashSet<Nota>();
             ProgresosXusuarioXjuegoProfesionals = new HashSet<ProgresosXusuarioXjuego>();
@@ -35,6 +37,8 @@ namespace TIP_UNLAM_Backend.Data.EF
 
         public virtual Genero Genero { get; set; }
         public virtual TipoUsuario TipoUsuario { get; set; }
+        public virtual ICollection<Llamadum> LlamadumPacientes { get; set; }
+        public virtual ICollection<Llamadum> LlamadumProfesionals { get; set; }
         public virtual ICollection<Nota> NotaPacientes { get; set; }
         public virtual ICollection<Nota> NotaProfesionals { get; set; }
         public virtual ICollection<ProgresosXusuarioXjuego> ProgresosXusuarioXjuegoProfesionals { get; set; }
