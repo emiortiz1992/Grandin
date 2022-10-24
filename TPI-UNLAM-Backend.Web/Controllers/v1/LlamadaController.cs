@@ -29,17 +29,17 @@ namespace TPI_UNLAM_Backend.Controllers.v1
             await _hubContext.Clients.All.SendAsync("sendMessage", message);
             return Ok();
         }
-
-        [HttpPost("api/v1/auth")]
-        public void GuardarLlamada([FromBody] vNotasXLlamada llamda)
-        {
-            _llamadaServicio.GuardarLlamada(llamda);
-        }
         [HttpPost("api/v1/llamadaSaliente")]
         public async Task<IActionResult> startHubConnection2(string message)
         {
             await _hubContext.Clients.All.SendAsync("sendMessage", message);
             return Ok();
+        }
+
+        [HttpPost("api/v1/guardarLlamada")]
+        public void GuardarLlamada([FromBody] LlamadaDto llamada)
+        {
+            _llamadaServicio.GuardarLlamada(llamada);
         }
 
     }

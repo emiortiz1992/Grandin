@@ -11,8 +11,8 @@ namespace TPI_UNLAM_Backend.Servicios.Interfaces
     public interface ILlamadaServicio
     {
         public void SaveChanges();
-        public vNotasXLlamada GetAllNotaXLlamada(int llamadaId);
-        public void GuardarLlamada(vNotasXLlamada llamada);
+        public LlamadaDto GetAllNotaXLlamada(int llamadaId);
+        public void GuardarLlamada(LlamadaDto llamada);
         public Llamadum GetLlamadaByCodigo(string codigo);
     }
 }

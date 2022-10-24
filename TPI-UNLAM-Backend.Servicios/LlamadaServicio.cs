@@ -31,7 +31,7 @@ namespace TPI_UNLAM_Backend.Servicios
             _notaRepo = notaRepo;
         }
 
-        public vNotasXLlamada GetAllNotaXLlamada(int llamadaId)
+        public LlamadaDto GetAllNotaXLlamada(int llamadaId)
         {
             return _llamadaRepo.GetAllNotaXLlamada(llamadaId);
         }
@@ -40,7 +40,7 @@ namespace TPI_UNLAM_Backend.Servicios
             return _llamadaRepo.GetLlamadaByCodigo(codigo);
         }
 
-        public void GuardarLlamada(vNotasXLlamada call)
+        public void GuardarLlamada(LlamadaDto call)
         {
             string emailUsuarioLogueado = _appSharedFunction.GetUsuarioPorToken();
             Nota nota = new Nota();
@@ -52,7 +52,7 @@ namespace TPI_UNLAM_Backend.Servicios
             Llamadum llamada = new Llamadum();
             llamada.Codigo = call.CodigoLlamada;
             llamada.ProfesionalId = usuarioLogueado.Id;
-            llamada.PacienteId = call.Paciente_Id;
+            llamada.PacienteId = call.PacienteId;
             llamada.Fecha = call.Fecha;
 
             _llamadaRepo.GuardarLlamada(llamada);

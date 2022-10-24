@@ -10,7 +10,7 @@ namespace TIP_UNLAM_Backend.Data.Repositorios.Interfaces
 {
     public interface ILlamadasRepositorios
     {
-        public vNotasXLlamada GetAllNotaXLlamada(int llamadaId);
+        public LlamadaDto GetAllNotaXLlamada(int llamadaId);
         public void GuardarLlamada(Llamadum llamada);
         public void SaveChanges();
         public Llamadum GetLlamadaByCodigo(string codigo);

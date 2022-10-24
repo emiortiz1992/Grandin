@@ -28,13 +28,13 @@ namespace TIP_UNLAM_Backend.Data.Repositorios
             return _ctx.Llamada.Where(x => x.Codigo == codigo).FirstOrDefault();
         }
 
-        public vNotasXLlamada GetAllNotaXLlamada(int llamadaId)
+        public LlamadaDto GetAllNotaXLlamada(int llamadaId)
         {
             return (
            from s in _ctx.Llamada
            join j in _ctx.Notas on s.Id equals j.LlamadaId
            where (s.Id == llamadaId)
-           select new vNotasXLlamada
+           select new LlamadaDto
            {
                Mensaje = j.Mensaje
            }

@@ -51,8 +51,14 @@ namespace TPI_UNLAM_Backend
             services.AddScoped<IUsuarioXUsuarioRepositorio, UsuarioXUsuarioRepositorio>();
             services.AddScoped<IProgresosXUsuarioXJuegoRepositorio, ProgresosXUsuarioXJuegoRepositorio>();
             services.AddScoped<IProgresosXUsuarioXJuegoServicio, ProgresosXUsuarioXJuegoServicio>();
-            //services.AddScoped<INotasServicio, NotasServicio>();
-            //services.AddScoped<ILlamadasRepositorio, NotasRepositorio>();
+            
+            services.AddScoped<ILlamadaServicio, LlamadaServicio>();
+            services.AddScoped<ILlamadasRepositorios, LlamadasRepositorios>();
+
+            services.AddScoped<INotasServicio,NotasServicio>();
+            services.AddScoped<INotasRepositorio, NotasRepositorio>(); 
+
+            
 
             services.AddSingleton<IAppSharedFunction, AppSharedFunction>();
 
