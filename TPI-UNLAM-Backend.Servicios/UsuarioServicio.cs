@@ -53,7 +53,7 @@ namespace TPI_UNLAM_Backend.Servicios
                 userNuevo.Apellido = usuario.usuario.Apellido;
                 userNuevo.Dni = usuario.usuario.Dni;
                 userNuevo.Telefono = usuario.usuario.Telefono;
-                userNuevo.GeneroId = usuario.usuario.Genero.Id;
+                userNuevo.GeneroId = usuario.usuario.GeneroId;
                 userNuevo.Direccion = usuario.usuario.Direccion;
                 if (String.IsNullOrEmpty(usuario.usuario.Matricula))
                 {

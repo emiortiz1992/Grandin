@@ -41,6 +41,8 @@ namespace TPI_UNLAM_Backend
             services.AddSignalR(); // agregamos servicio SignalR
             services.AddControllers();
             services.AddTransient<TPI_UNLAM_DB_Context>();
+            services.AddScoped<IGeneroServicio, GeneroServicio>();
+            services.AddScoped<IGeneroRepositorio, GeneroRepositorio>();
             services.AddScoped<IJuegoServicio, JuegoServicio>();
             services.AddScoped<IJuegoRepositorio, JuegoRepositorio>();
             services.AddScoped<IUsuarioServicio, UsuarioServicio>();
