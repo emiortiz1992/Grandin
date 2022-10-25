@@ -58,6 +58,7 @@ namespace TPI_UNLAM_Backend.Servicios
                 if (String.IsNullOrEmpty(usuario.usuario.Matricula))
                 {
                     userNuevo.TipoUsuarioId = 1;
+                    usuario.usuario.TipoUsuarioId = 1;
                     userNuevo.NombreTutor = usuario.usuario.NombreTutor;
 
                     //usuario.usuario.TipoUsuarioId = userNuevo.TipoUsuarioId;
@@ -65,6 +66,7 @@ namespace TPI_UNLAM_Backend.Servicios
                 else
                 {
                     userNuevo.TipoUsuarioId = 2;
+                    usuario.usuario.TipoUsuarioId = 2;
                 }
 
                 _userRepo.AgregarUsuario(userNuevo);

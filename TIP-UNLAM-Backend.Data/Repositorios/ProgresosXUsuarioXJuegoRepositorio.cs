@@ -86,7 +86,8 @@ namespace TIP_UNLAM_Backend.Data.Repositorios
                Desaciertos = s.Desaciertos,
                FechaFinalizacion = s.FechaFinalizacion,
                FechaInicio = s.FechaInicio,
-               Finalizado = s.Finalizado
+               Finalizado = s.Finalizado,
+               Duracion = Convert.ToString(s.FechaInicio.Subtract(s.FechaFinalizacion).TotalHours)
            }
            ).FirstOrDefault();
 
@@ -136,7 +137,8 @@ namespace TIP_UNLAM_Backend.Data.Repositorios
              Desaciertos = s.Desaciertos,
              FechaFinalizacion = s.FechaFinalizacion,
              FechaInicio = s.FechaInicio,
-             Finalizado = s.Finalizado
+             Finalizado = s.Finalizado,
+             Duracion = Convert.ToString(s.FechaInicio.Subtract(s.FechaFinalizacion).TotalHours)
          }
          ).ToList();
 

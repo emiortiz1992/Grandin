@@ -19,7 +19,7 @@ namespace TIP_UNLAM_Backend.Data.Dto
         public int Aciertos { get; set; }
         public int Desaciertos { get; set; }
         public int ProfesionalId { get; set; }
-
+        public string Duracion { get; set; }
 
     }
 }
