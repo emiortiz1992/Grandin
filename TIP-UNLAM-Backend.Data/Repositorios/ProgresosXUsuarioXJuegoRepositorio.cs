@@ -37,7 +37,8 @@ namespace TIP_UNLAM_Backend.Data.Repositorios
                 Desaciertos = s.Desaciertos,
                 FechaFinalizacion = s.FechaFinalizacion,
                 FechaInicio = s.FechaInicio,
-                Finalizado = s.Finalizado
+                Finalizado = s.Finalizado,
+                Duracion = String.Format("{0:00}:{1:00}:{2:00}", s.FechaFinalizacion.Subtract(s.FechaInicio).Hours, s.FechaFinalizacion.Subtract(s.FechaInicio).Minutes, s.FechaFinalizacion.Subtract(s.FechaInicio).Seconds)
             }
             ).ToList();
         }
@@ -61,7 +62,8 @@ namespace TIP_UNLAM_Backend.Data.Repositorios
                 Desaciertos = s.Desaciertos,
                 FechaFinalizacion = s.FechaFinalizacion,
                 FechaInicio = s.FechaInicio,
-                Finalizado = s.Finalizado
+                Finalizado = s.Finalizado,
+                Duracion = String.Format("{0:00}:{1:00}:{2:00}", s.FechaFinalizacion.Subtract(s.FechaInicio).Hours, s.FechaFinalizacion.Subtract(s.FechaInicio).Minutes, s.FechaFinalizacion.Subtract(s.FechaInicio).Seconds)
             }
             ).ToList();
 
@@ -87,7 +89,7 @@ namespace TIP_UNLAM_Backend.Data.Repositorios
                FechaFinalizacion = s.FechaFinalizacion,
                FechaInicio = s.FechaInicio,
                Finalizado = s.Finalizado,
-               Duracion = Convert.ToString(s.FechaInicio.Subtract(s.FechaFinalizacion).TotalHours)
+               Duracion = String.Format("{0:00}:{1:00}:{2:00}", s.FechaFinalizacion.Subtract(s.FechaInicio).Hours, s.FechaFinalizacion.Subtract(s.FechaInicio).Minutes, s.FechaFinalizacion.Subtract(s.FechaInicio).Seconds)
            }
            ).FirstOrDefault();
 
@@ -112,7 +114,8 @@ namespace TIP_UNLAM_Backend.Data.Repositorios
               Desaciertos = s.Desaciertos,
               FechaFinalizacion = s.FechaFinalizacion,
               FechaInicio = s.FechaInicio,
-              Finalizado = s.Finalizado
+              Finalizado = s.Finalizado,
+              Duracion = String.Format("{0:00}:{1:00}:{2:00}", s.FechaFinalizacion.Subtract(s.FechaInicio).Hours, s.FechaFinalizacion.Subtract(s.FechaInicio).Minutes, s.FechaFinalizacion.Subtract(s.FechaInicio).Seconds)
           }
           ).FirstOrDefault();
 
@@ -138,7 +141,8 @@ namespace TIP_UNLAM_Backend.Data.Repositorios
              FechaFinalizacion = s.FechaFinalizacion,
              FechaInicio = s.FechaInicio,
              Finalizado = s.Finalizado,
-             Duracion = Convert.ToString(s.FechaInicio.Subtract(s.FechaFinalizacion).TotalHours)
+             Duracion = String.Format("{0:00}:{1:00}:{2:00}", s.FechaFinalizacion.Subtract(s.FechaInicio).Hours, s.FechaFinalizacion.Subtract(s.FechaInicio).Minutes, s.FechaFinalizacion.Subtract(s.FechaInicio).Seconds)
+            
          }
          ).ToList();
 
