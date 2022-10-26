@@ -47,9 +47,9 @@ namespace TPI_UNLAM_Backend.Controllers.v1
         }
 
         [HttpGet("api/v1/obtenerLlamadaActual")]
-        public void obtenerLlamadaActual()
+        public LlamadaDto obtenerLlamadaActual()
         {
-            _llamadaServicio.obtenerLlamadaActual();
+            return _llamadaServicio.obtenerLlamadaActual();
         }
 
     }
