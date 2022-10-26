@@ -14,5 +14,7 @@ namespace TIP_UNLAM_Backend.Data.Repositorios.Interfaces
         public void GuardarLlamada(Llamadum llamada);
         public void SaveChanges();
         public Llamadum GetLlamadaByCodigo(string codigo);
+
+        public Llamadum obtenerLlamadaActual(int codigo);
     }
 }

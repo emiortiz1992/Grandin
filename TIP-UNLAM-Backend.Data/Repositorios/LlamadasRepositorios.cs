@@ -28,6 +28,12 @@ namespace TIP_UNLAM_Backend.Data.Repositorios
             return _ctx.Llamada.Where(x => x.Codigo == codigo).FirstOrDefault();
         }
 
+        public Llamadum obtenerLlamadaActual(int codigo)
+        {
+            return _ctx.Llamada.Where(x => x.PacienteId == codigo).OrderByDescending(x => x.Fecha).FirstOrDefault();
+
+        }
+
         public LlamadaDto GetAllNotaXLlamada(int llamadaId)
         {
             return (
