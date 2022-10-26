@@ -51,6 +51,7 @@ namespace TPI_UNLAM_Backend.Servicios
                 habilitarPaciente.FechaFinalizacionRelacion = DateTime.Now;
             }
 
+            _userRepo.SaveChanges();
             _userXuser.SaveChanges();
 
         }
