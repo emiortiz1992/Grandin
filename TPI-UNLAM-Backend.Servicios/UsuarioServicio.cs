@@ -12,6 +12,8 @@ using TIP_UNLAM_Backend.Data.EF;
 using TIP_UNLAM_Backend.Data.Repositorios.Interfaces;
 using TPI_UNLAM_Backend.Servicios.Interfaces;
 using TPI_UNLAM_Backend.Exceptions;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 
 namespace TPI_UNLAM_Backend.Servicios
 {
@@ -140,6 +142,14 @@ namespace TPI_UNLAM_Backend.Servicios
 
                 UserTokenDto tokenDto = _appSharedFunction.BuildTokenUsuario(loginDto.email, loginDto.contrasena);
 
+
+                //SignalR login a revisar
+                var claimEmail = new Claim(ClaimTypes.Email, usuario.Mail);
+                var claimNameIdentifier = new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString());
+                var claimNameIdentity = new ClaimsIdentity(new[]{ claimEmail, claimNameIdentifier }, "serverAuth");
+                var claimPrincipal = new ClaimsPrincipal(claimNameIdentity);
+                 
+                
                 usuarioDto.usuario = usuario;
                 usuarioDto.token = tokenDto.Token;
 

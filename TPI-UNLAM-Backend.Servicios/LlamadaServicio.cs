@@ -64,6 +64,12 @@ namespace TPI_UNLAM_Backend.Servicios
         }
 
       
+        public void obtenerLlamadaActual()
+        {
+            string emailUsuarioLogueado = _appSharedFunction.GetUsuarioPorToken();
+            Usuario usuarioLogueado = _userRepo.getUsuarioByEmail(emailUsuarioLogueado);
+
+        }
 
         public void SaveChanges()
         {
