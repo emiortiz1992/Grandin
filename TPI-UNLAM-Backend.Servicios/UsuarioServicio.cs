@@ -31,8 +31,7 @@ namespace TPI_UNLAM_Backend.Servicios
 
         public string AgregarUsuario(UsuarioDto usuario)
         {
-            try
-            {
+            
                 Usuario userNuevo = new Usuario();
 
                 if (getUsuarioByEmail(usuario.usuario.Mail) != null)
@@ -76,11 +75,7 @@ namespace TPI_UNLAM_Backend.Servicios
                 
 
                 return "El usuario se registro correctamente"; ;
-            }
-            catch (Exception)
-            {
-                return "No se pudo registrar el usuario"; ;
-            }
+            
            
         }
 
