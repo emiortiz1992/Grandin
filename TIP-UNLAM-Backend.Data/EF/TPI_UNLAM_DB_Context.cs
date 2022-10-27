@@ -24,6 +24,7 @@ namespace TIP_UNLAM_Backend.Data.EF
         public virtual DbSet<Llamadum> Llamada { get; set; }
         public virtual DbSet<Nota> Notas { get; set; }
         public virtual DbSet<ProgresosXusuarioXjuego> ProgresosXusuarioXjuegos { get; set; }
+        public virtual DbSet<Sugerencia> Sugerencias { get; set; }
         public virtual DbSet<TipoUsuario> TipoUsuarios { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
         public virtual DbSet<UsuarioXusuario> UsuarioXusuarios { get; set; }
@@ -160,6 +161,18 @@ namespace TIP_UNLAM_Backend.Data.EF
                     .HasForeignKey(d => d.UsuarioId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Progresos__Usuar__36B12243");
+            });
+
+            modelBuilder.Entity<Sugerencia>(entity =>
+            {
+                entity.Property(e => e.Descripcion)
+                    .HasMaxLength(300)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Mail)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<TipoUsuario>(entity =>
