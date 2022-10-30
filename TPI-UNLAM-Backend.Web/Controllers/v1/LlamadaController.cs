@@ -30,7 +30,7 @@ namespace TPI_UNLAM_Backend.Controllers.v1
             return Ok();
         }
         [HttpPost("api/v1/llamadaSaliente")]
-        public async Task<IActionResult> startHubConnection2([FromBody]MensajeLlamadaDto mensaje)
+        public async Task<IActionResult> startHubConnection2([FromBody] MensajeLlamadaDto mensaje)
         {
             //a revisar esto
             //var users = new string[] { mensaje.ReceptorId, mensaje.LlamadaId };

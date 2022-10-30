@@ -8,7 +8,7 @@ namespace TIP_UNLAM_Backend.Data.Dto
 {
     public class MensajeLlamadaDto
     {
-        public string ReceptorId { get; set; }
+        public int ReceptorId { get; set; }
         public string LlamadaId { get; set; }
     }
 }
