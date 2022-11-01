@@ -22,10 +22,15 @@ namespace TPI_UNLAM_Backend.Controllers.v1
         {
             _notasServicio.guardarSugerencia(sugerencia);
         }
-        //[HttpPost("api/v1/auth")]
-        //public void GuardarNota([FromBody] Nota nota, string codigoLLamado)
-        //{
-        //    _notasServicio.GuardarNota(nota, codigoLLamado);
-        //}
+        [HttpPost("api/v1/GuardarNotaEnLlamada")]
+        public void GuardarNotaEnLlamada([FromBody] Nota nota, string codigoLLamado)
+        {
+            _notasServicio.GuardarNotaEnLlamada(nota, codigoLLamado);
+        }
+        [HttpPost("api/v1/GuardarNota")]
+        public void GuardarNota([FromBody] Nota nota)
+        {
+            _notasServicio.GuardarNota(nota);
+        }
     }
 }

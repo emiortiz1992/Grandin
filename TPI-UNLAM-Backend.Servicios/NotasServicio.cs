@@ -62,13 +62,21 @@ namespace TPI_UNLAM_Backend.Servicios
             return _notaRepositorio.GetAllNotasXProfesional(usuario);
         }
 
-        public void GuardarNota(Nota nota, string codigoLlamada)
+        public void GuardarNotaEnLlamada(Nota nota, string codigoLlamada)
         {
             if (nota.ProfesionalId == null || nota.PacienteId == null)
                 throw new BadRequestException("Los campos no pueden ser nulos");
 
             Llamadum llamado = _llamadaRepositorio.GetLlamadaByCodigo(codigoLlamada);
             nota.LlamadaId = llamado.Id;
+
+            _notaRepositorio.GuardarNota(nota);
+            _notaRepositorio.SaveChanges();
+        }
+        public void GuardarNota(Nota nota)
+        {
+            if (nota.ProfesionalId == null || nota.PacienteId == null)
+                throw new BadRequestException("Los campos no pueden ser nulos");
 
             _notaRepositorio.GuardarNota(nota);
             _notaRepositorio.SaveChanges();
