@@ -20,7 +20,7 @@ namespace TPI_UNLAM_Backend.Servicios
         private IUsuarioRepositorio _userRepo;
         private ILlamadasRepositorios _llamadaRepo;
         private INotasRepositorio _notaRepo;
-        
+
 
 
         public LlamadaServicio(INotasRepositorio notaRepositorio, IUsuarioXUsuarioRepositorio userXUsuarioRepo, IUsuarioRepositorio userRepo, IAppSharedFunction appSharedFunction, ILlamadasRepositorios llamadaRepo, INotasRepositorio notaRepo)
@@ -31,7 +31,7 @@ namespace TPI_UNLAM_Backend.Servicios
             _appSharedFunction = appSharedFunction;
             _llamadaRepo = llamadaRepo;
             _notaRepo = notaRepo;
-            
+
         }
 
         public LlamadaDto GetAllNotaXLlamada(int llamadaId)
@@ -63,7 +63,18 @@ namespace TPI_UNLAM_Backend.Servicios
 
         }
 
-      
+
+        public LlamadaDto obtenerLlamadaActual()
+        {
+            string emailUsuarioLogueado = _appSharedFunction.GetUsuarioPorToken();
+            Usuario usuarioLogueado = _userRepo.getUsuarioByEmail(emailUsuarioLogueado);
+            Llamadum llamadaObj = _llamadaRepo.obtenerLlamadaActual(usuarioLogueado.Id);
+            
+            LlamadaDto llamadaDto = new LlamadaDto();
+            llamadaDto.CodigoLlamada = llamadaObj.Codigo;
+
+            return llamadaDto;
+        }
 
         public void SaveChanges()
         {
