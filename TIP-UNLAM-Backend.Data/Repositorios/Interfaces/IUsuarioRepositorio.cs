@@ -20,8 +20,6 @@ namespace TIP_UNLAM_Backend.Data.Repositorios.Interfaces
         public List<Usuario> getAllUsuariosPacientesActivos();
         public List<Usuario> getAllUsuariosPacientesInactivos();
         public List<Usuario> getAllUsuariosPacientes();
-        public void EliminarUsuario(Usuario pacienteId);
-
-
+       
     }
 }

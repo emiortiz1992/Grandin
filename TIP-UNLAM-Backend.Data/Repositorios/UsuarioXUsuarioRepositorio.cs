@@ -19,19 +19,9 @@ namespace TIP_UNLAM_Backend.Data
             _ctx = ctx;
         }
 
-        public void EliminarRelacionUsuario(UsuarioXusuario pacienteId)
-        {
-            _ctx.UsuarioXusuarios.Remove(pacienteId);
-        }
-
-        public List<UsuarioXusuario> getAllPacienteXProfesional(int UsuarioLogeadoId)
+        public List<UsuarioXusuario> getPacienteXProfesional(int UsuarioLogeadoId)
         {
             return _ctx.UsuarioXusuarios.Where(x => x.UsuarioProfesionalId == UsuarioLogeadoId).ToList();
-        }
-
-        public UsuarioXusuario getPacienteXProfesional(int UsuarioLogeadoId)
-        {
-            return _ctx.UsuarioXusuarios.Where(x => x.UsuarioProfesionalId == UsuarioLogeadoId).FirstOrDefault();
         }
 
         public List<UsuarioXusuario> getPacienteXProfesionalInactivos(int UsuarioLogeadoId)

@@ -31,15 +31,15 @@ namespace TPI_UNLAM_Backend.Servicios
 
         public string AgregarUsuario(UsuarioDto usuario)
         {
-         
+            try
+            {
                 Usuario userNuevo = new Usuario();
 
                 if (getUsuarioByEmail(usuario.usuario.Mail) != null)
                     throw new BadRequestException("Ya existe el usuario");
 
                 if (ContrasenaSegura(usuario.usuario.Contrasena) == false)
-                    throw new ArgumentNullException(paramName: nameof(usuario.usuario.Contrasena), message: "Parameter can't be null");
-            //throw new BadRequestException("Verificar que la clave tenga un minimo de 8 caracteres, al menos tenga un caracter, un numero y un caracter especial");
+                    throw new BadRequestException("Verificar que la clave tenga un minimo de 8 caracteres, al menos tenga un caracter, un numero y un caracter especial");
 
                 if (ValidateEmail(usuario.usuario.Mail) == false)
                     throw new BadRequestException("El mail no es valido");
@@ -76,21 +76,15 @@ namespace TPI_UNLAM_Backend.Servicios
                 
 
                 return "El usuario se registro correctamente"; ;
-            
-            
+            }
+            catch (Exception)
+            {
+                return "No se pudo registrar el usuario"; ;
+            }
            
         }
 
-        public void EliminarUsuarioPendiente(int pacienteId)
-        {
-           UsuarioXusuario relacion = _userXUsuarioRepo.getPacienteXProfesional(pacienteId);
-           Usuario paciente = _userRepo.getUsuarioById(pacienteId);
-
-            _userXUsuarioRepo.EliminarRelacionUsuario(relacion);
-            _userRepo.EliminarUsuario(paciente);
-        }
-
-
+      
 
         public void modificarUsuario(Usuario usuario)
         {
