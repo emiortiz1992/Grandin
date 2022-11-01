@@ -11,6 +11,7 @@ namespace TPI_UNLAM_Backend.Servicios.Interfaces
     public interface IUsuarioServicio
     {
         public string AgregarUsuario(UsuarioDto usuario);
+        public void EliminarUsuarioPendiente(int pacienteId);
         public Usuario getUsuarioByEmail(string email);
         public Usuario getUsuarioById(int id);
         public UsuarioDto Login(LoginDto loginDto);

@@ -103,6 +103,12 @@ namespace TPI_UNLAM_Backend.Controllers.v1
         {
             _userService.HabilitarPacientes(dto.id, dto.estado);
         }
+
+        [HttpPost("api/v1/EliminarUusarioPendiente")]
+        public void EliminarUusarioPendiente([FromBody] int pacienteId)
+        {
+            _userServi.EliminarUsuarioPendiente(pacienteId);
+        }
         #endregion
 
 

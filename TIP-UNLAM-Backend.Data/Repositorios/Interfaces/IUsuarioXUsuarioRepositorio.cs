@@ -12,11 +12,13 @@ namespace TIP_UNLAM_Backend.Data.Repositorios.Interfaces
     {
         public void SaveChanges();
         public void agregarRelacion(UsuarioXusuario usuarioxusuario);
-        public List<UsuarioXusuario> getPacienteXProfesional(int UsuarioLogeadoId);
+        public List<UsuarioXusuario> getAllPacienteXProfesional(int UsuarioLogeadoId);
+        public UsuarioXusuario getPacienteXProfesional(int UsuarioLogeadoId);
         public List<UsuarioXusuario> getPacienteXProfesionalInactivos(int UsuarioLogeadoId);
         public List<UsuarioXusuario> getPacienteXProfesionalActivos(int UsuarioLogeadoId);
         public UsuarioXusuario HabilitarPacienteXProfesional(int UsuarioLogeadoId, int pacienteId);
         public UsuarioXusuario getProfesionalXPaciente(int UsuarioLogeadoId);
         public List<vMisPacientes> MisPacientes(int profesionalId);
+        public void EliminarRelacionUsuario(UsuarioXusuario pacienteId);
     }
 }

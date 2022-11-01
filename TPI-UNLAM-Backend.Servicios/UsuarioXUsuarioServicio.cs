@@ -50,7 +50,7 @@ namespace TPI_UNLAM_Backend.Servicios
                 habilitarPaciente.Activo = false;
                 habilitarPaciente.FechaFinalizacionRelacion = DateTime.Now;
             }
-
+            _userRepo.SaveChanges();
             _userXuser.SaveChanges();
 
         }
@@ -59,7 +59,7 @@ namespace TPI_UNLAM_Backend.Servicios
         {
             string email = _appSharedFunction.GetUsuarioPorToken();
             Usuario usuario = _userRepo.getUsuarioByEmail(email);
-            return _userXuser.getPacienteXProfesional(usuario.Id).ToList();
+            return _userXuser.getAllPacienteXProfesional(usuario.Id).ToList();
         }
 
         public List<UsuarioXusuario> getPacienteXProfesionalActivos()
