@@ -32,5 +32,10 @@ namespace TPI_UNLAM_Backend.Controllers.v1
         {
             _notasServicio.GuardarNota(nota);
         }
+        [HttpGet("api/v1/GetAllNotasXPacienteXProfesional/{idPaciente}")]
+        public ActionResult<List<Nota>> GetAllNotasXPacienteXProfesional(int idPaciente)
+        {
+            return _notasServicio.GetAllNotasXPacienteXProfesional(idPaciente);
+        }
     }
 }
