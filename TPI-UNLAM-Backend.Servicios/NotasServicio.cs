@@ -78,6 +78,8 @@ namespace TPI_UNLAM_Backend.Servicios
             if (nota.ProfesionalId == null || nota.PacienteId == null)
                 throw new BadRequestException("Los campos no pueden ser nulos");
 
+            nota.LlamadaId = null;
+
             _notaRepositorio.GuardarNota(nota);
             _notaRepositorio.SaveChanges();
         }
