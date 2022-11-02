@@ -23,20 +23,17 @@ namespace TPI_UNLAM_Backend.Controllers.v1
         }
 
         
-        [HttpGet("api/v1/llamadaSaliente")]
-        public async Task<IActionResult> startHubConnection(string message)
-        {
-            await _hubContext.Clients.All.SendAsync("sendMessage", message);
-            return Ok();
-        }
-        [HttpPost("api/v1/llamadaSaliente")]
-        public async Task<IActionResult> startHubConnection2([FromBody] MensajeLlamadaDto mensaje)
-        {
-            //a revisar esto
-            //var users = new string[] { mensaje.ReceptorId, mensaje.LlamadaId };
-            //await _hubContext.Clients.Users(users).SendAsync("sendMessage", mensaje);
-            await _hubContext.Clients.All.SendAsync("sendMessage", mensaje);
+        //[HttpGet("api/v1/llamadaSaliente")]
+        //public async Task<IActionResult> startHubConnection(string message)
+        //{
+        //    await _hubContext.Clients.All.SendAsync("sendMessage", message);
+        //    return Ok();
+        //}
 
+        [HttpPost("api/v1/llamadaSaliente")]
+        public async Task<IActionResult> startHubConnection2([FromBody] MensajeLlamadaDto llamadaDto)
+        {
+            await _hubContext.Clients.Group(llamadaDto.ReceptorId).SendAsync("sendMessage", llamadaDto);
             return Ok();
         }
 
@@ -51,6 +48,8 @@ namespace TPI_UNLAM_Backend.Controllers.v1
         {
             return _llamadaServicio.obtenerLlamadaActual();
         }
+
+     
 
     }
 }
