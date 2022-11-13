@@ -13,6 +13,7 @@ namespace TIP_UNLAM_Backend.Data.EF
         public int? ProfesionalId { get; set; }
         public int? PacienteId { get; set; }
         public int? LlamadaId { get; set; }
+        public bool? Archivado { get; set; }
 
         public virtual Llamadum Llamada { get; set; }
         public virtual Usuario Paciente { get; set; }
