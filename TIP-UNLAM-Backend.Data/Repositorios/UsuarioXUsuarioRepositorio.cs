@@ -58,6 +58,8 @@ namespace TIP_UNLAM_Backend.Data
                     PacienteApellido = paciente.Apellido,
                     PacienteNombre = paciente.Nombre,
                     FechaNacimiento = paciente.FechaNacimiento,
+                    FechaInicioRelac = s.FechaInicioRelacion,
+                    FechaFinRelac = s.FechaFinalizacionRelacion,
                     Direccion = paciente.Direccion,
                     Mail = paciente.Mail,
                     Telefono = paciente.Telefono,
