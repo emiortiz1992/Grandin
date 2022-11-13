@@ -94,10 +94,10 @@ namespace TPI_UNLAM_Backend.Servicios
             throw new NotImplementedException();
         }
 
-        public void guardarSugerencia(Sugerencia sugerencia)
-        {
-            _notaRepositorio.guardarSugerencia(sugerencia);
-            _notaRepositorio.SaveChanges();
-        }
+        //public void guardarSugerencia(Sugerencia sugerencia)
+        //{
+        //    _notaRepositorio.guardarSugerencia(sugerencia);
+        //    _notaRepositorio.SaveChanges();
+        //}
     }
 }

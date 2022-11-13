@@ -25,16 +25,6 @@ namespace TPI_UNLAM_Backend.Controllers.v1
         {
             return _userService.getPacienteXProfesional();
         }
-        [HttpGet("api/v1/MisPacientesActivos")]
-        public ActionResult<List<UsuarioXusuario>> getPacienteXProfesionalActivos()
-        {
-            return _userService.getPacienteXProfesionalActivos();
-        }
-        [HttpGet("api/v1/MisPacientesInactivos")]
-        public ActionResult<List<UsuarioXusuario>> getPacienteXProfesionalInactivos()
-        {
-            return _userService.getPacienteXProfesionalInactivos();
-        }
 
         [HttpGet("api/v1/ObtenerUsuario")]
         public Usuario getUsuario(int id)
@@ -48,17 +38,17 @@ namespace TPI_UNLAM_Backend.Controllers.v1
             return _userServi.getAllUsuariosProfesionales();
         }
 
-        [HttpGet("api/v1/ObtenerTodosLosProfesionalesActivos")]
-        public ActionResult<List<Usuario>> getAllProfesionalesActivos()
-        {
-            return _userServi.getAllUsuariosProfesionalesActivos();
-        }
+        //[HttpGet("api/v1/ObtenerTodosLosProfesionalesActivos")]
+        //public ActionResult<List<Usuario>> getAllProfesionalesActivos()
+        //{
+        //    return _userServi.getAllUsuariosProfesionalesActivos();
+        //}
 
-        [HttpGet("api/v1/ObtenerTodosLosProfesionalesInactivos")]
-        public ActionResult<List<Usuario>> getAllProfesionalesInactivos()
-        {
-            return _userServi.getAllUsuariosProfesionalesInactivos();
-        }
+        //[HttpGet("api/v1/ObtenerTodosLosProfesionalesInactivos")]
+        //public ActionResult<List<Usuario>> getAllProfesionalesInactivos()
+        //{
+        //    return _userServi.getAllUsuariosProfesionalesInactivos();
+        //}
 
         [HttpGet("api/v1/ObtenerTodosLosPacientes")]
         public ActionResult<List<Usuario>> getAllPacientes()
@@ -66,17 +56,17 @@ namespace TPI_UNLAM_Backend.Controllers.v1
             return _userServi.getAllUsuariosPacientes();
         }
 
-        [HttpGet("api/v1/ObtenerTodosLosPacientesActivos")]
-        public ActionResult<List<Usuario>> getAllUsuariosPacientesActivos()
-        {
-            return _userServi.getAllUsuariosProfesionalesActivos();
-        }
+        //[HttpGet("api/v1/ObtenerTodosLosPacientesActivos")]
+        //public ActionResult<List<Usuario>> getAllUsuariosPacientesActivos()
+        //{
+        //    return _userServi.getAllUsuariosProfesionalesActivos();
+        //}
 
-        [HttpGet("api/v1/ObtenerTodosLosPacientesInactivos")]
-        public ActionResult<List<Usuario>> getAllUsuariosPacientesInactivos()
-        {
-            return _userServi.getAllUsuariosProfesionalesInactivos();
-        }
+        //[HttpGet("api/v1/ObtenerTodosLosPacientesInactivos")]
+        //public ActionResult<List<Usuario>> getAllUsuariosPacientesInactivos()
+        //{
+        //    return _userServi.getAllUsuariosProfesionalesInactivos();
+        //}
 
         [HttpGet("api/v1/spMisPacientes")]
         public ActionResult<List<vMisPacientes>> vMisPacientes()

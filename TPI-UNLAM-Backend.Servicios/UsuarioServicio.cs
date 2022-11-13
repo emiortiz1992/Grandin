@@ -53,7 +53,6 @@ namespace TPI_UNLAM_Backend.Servicios
                 userNuevo.Dni = usuario.usuario.Dni;
                 userNuevo.Telefono = usuario.usuario.Telefono;
                 userNuevo.GeneroId = usuario.usuario.GeneroId;
-                userNuevo.Direccion = usuario.usuario.Direccion;
                 if (String.IsNullOrEmpty(usuario.usuario.Matricula))
                 {
                     userNuevo.TipoUsuarioId = 1;
@@ -104,6 +103,7 @@ namespace TPI_UNLAM_Backend.Servicios
                     throw new BadRequestException("El usuario del Profesional no se encuentra en nuestra lista");
 
                 UsuarioXusuario userxuser = new UsuarioXusuario();
+                userxuser.Pendiente = true;
                 userxuser.UsuarioPacienteId = paciente.Id;
                 userxuser.UsuarioProfesionalId = usuarioPro.Id;
                 userxuser.FechaInicioRelacion = null;

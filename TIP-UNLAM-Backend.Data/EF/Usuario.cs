@@ -33,7 +33,6 @@ namespace TIP_UNLAM_Backend.Data.EF
         public string NombreTutor { get; set; }
         public string Telefono { get; set; }
         public int? GeneroId { get; set; }
-        public string Direccion { get; set; }
 
         public virtual Genero Genero { get; set; }
         public virtual TipoUsuario TipoUsuario { get; set; }

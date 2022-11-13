@@ -42,6 +42,7 @@ namespace TPI_UNLAM_Backend.Servicios
             {
                 paciente.Activo = true;
                 habilitarPaciente.Activo = true;
+                habilitarPaciente.Pendiente = false;
                 habilitarPaciente.FechaInicioRelacion = DateTime.Now;
             }
             else
@@ -61,27 +62,6 @@ namespace TPI_UNLAM_Backend.Servicios
             string email = _appSharedFunction.GetUsuarioPorToken();
             Usuario usuario = _userRepo.getUsuarioByEmail(email);
             return _userXuser.getPacienteXProfesional(usuario.Id).ToList();
-        }
-
-        public List<UsuarioXusuario> getPacienteXProfesionalActivos()
-        {
-            string email = _appSharedFunction.GetUsuarioPorToken();
-            Usuario usuario = _userRepo.getUsuarioByEmail(email);
-            return _userXuser.getPacienteXProfesionalActivos(usuario.Id).ToList();
-        }
-
-        public List<UsuarioXusuario> getPacienteXProfesionalInactivos()
-        {
-            string email = _appSharedFunction.GetUsuarioPorToken();
-            Usuario usuario = _userRepo.getUsuarioByEmail(email);
-            return _userXuser.getPacienteXProfesionalInactivos(usuario.Id).ToList();
-        }
-
-        public UsuarioXusuario getProfesionalXPaciente(int UsuarioLogeadoId)
-        {
-            string email = _appSharedFunction.GetUsuarioPorToken();
-            Usuario usuario = _userRepo.getUsuarioByEmail(email);
-            return _userXuser.getProfesionalXPaciente(usuario.Id);
         }
 
         public List<vMisPacientes> MisPacientes()

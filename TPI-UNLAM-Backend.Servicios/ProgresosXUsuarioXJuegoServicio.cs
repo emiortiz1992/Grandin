@@ -34,6 +34,14 @@ namespace TPI_UNLAM_Backend.Servicios
             return _progresoRepo.getAllProgresoXPaciente(paciente);
         }
 
+        public List<vProgresosXUsuarioXJuego> getAllProgresoXProfesional()
+        {
+            string mailProfesionalLogueado = _appSharedFunction.GetUsuarioPorToken();
+
+            Usuario profesional = _userRepo.getUsuarioByEmail(mailProfesionalLogueado);
+            return _progresoRepo.getAllProgresoXProfesional(profesional);
+        }
+
         public vProgresosXUsuarioXJuego getAllProgresoXPacienteXJuego(int juegoId)
         {
             string mailPacienteLogueado = _appSharedFunction.GetUsuarioPorToken();
@@ -43,13 +51,7 @@ namespace TPI_UNLAM_Backend.Servicios
             return _progresoRepo.getAllProgresoXPacienteXJuego(paciente, juegoId);
         }
 
-        public List<vProgresosXUsuarioXJuego> getAllProgresoXProfesional()
-        {
-            string mailProfesionalLogueado = _appSharedFunction.GetUsuarioPorToken();
-
-            Usuario profesional = _userRepo.getUsuarioByEmail(mailProfesionalLogueado);
-            return _progresoRepo.getAllProgresoXProfesional(profesional);
-        }
+      
 
         public vProgresosXUsuarioXJuego getProgresoXPacienteXJuegoXProfesional(int pacienteId, int juegoid)
         {

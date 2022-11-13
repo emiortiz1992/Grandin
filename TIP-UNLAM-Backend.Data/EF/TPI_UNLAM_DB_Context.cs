@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using TPI_UNLAM_Backend.Utils;
+using Microsoft.Extensions.Configuration;
 
 #nullable disable
 
@@ -9,8 +9,10 @@ namespace TIP_UNLAM_Backend.Data.EF
 {
     public partial class TPI_UNLAM_DB_Context : DbContext
     {
-        public TPI_UNLAM_DB_Context()
+        private readonly IConfiguration _configuration;
+       public TPI_UNLAM_DB_Context(IConfiguration configuration)
         {
+            _configuration = configuration;
         }
 
         public TPI_UNLAM_DB_Context(DbContextOptions<TPI_UNLAM_DB_Context> options)
@@ -24,7 +26,6 @@ namespace TIP_UNLAM_Backend.Data.EF
         public virtual DbSet<Llamadum> Llamada { get; set; }
         public virtual DbSet<Nota> Notas { get; set; }
         public virtual DbSet<ProgresosXusuarioXjuego> ProgresosXusuarioXjuegos { get; set; }
-        public virtual DbSet<Sugerencia> Sugerencias { get; set; }
         public virtual DbSet<TipoUsuario> TipoUsuarios { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
         public virtual DbSet<UsuarioXusuario> UsuarioXusuarios { get; set; }
@@ -34,7 +35,7 @@ namespace TIP_UNLAM_Backend.Data.EF
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer(Configuraciones.ConexionDB);
+                optionsBuilder.UseSqlServer(_configuration.GetConnectionString("DefaultConecction"));
             }
         }
 
@@ -163,18 +164,6 @@ namespace TIP_UNLAM_Backend.Data.EF
                     .HasConstraintName("FK__Progresos__Usuar__36B12243");
             });
 
-            modelBuilder.Entity<Sugerencia>(entity =>
-            {
-                entity.Property(e => e.Descripcion)
-                    .HasMaxLength(300)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Mail)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
-
             modelBuilder.Entity<TipoUsuario>(entity =>
             {
                 entity.ToTable("TipoUsuario");
@@ -195,10 +184,6 @@ namespace TIP_UNLAM_Backend.Data.EF
                 entity.Property(e => e.Contrasena)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Direccion)
-                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Dni)
@@ -253,6 +238,8 @@ namespace TIP_UNLAM_Backend.Data.EF
                 entity.Property(e => e.FechaFinalizacionRelacion).HasColumnType("datetime");
 
                 entity.Property(e => e.FechaInicioRelacion).HasColumnType("datetime");
+
+                entity.Property(e => e.Pendiente).HasDefaultValueSql("((0))");
 
                 entity.HasOne(d => d.UsuarioPaciente)
                     .WithMany(p => p.UsuarioXusuarioUsuarioPacientes)

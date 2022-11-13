@@ -51,9 +51,9 @@ namespace TIP_UNLAM_Backend.Data.Repositorios
         {
             _ctx.SaveChanges();
         }
-        public void guardarSugerencia(Sugerencia sugerencia)
-        {
-           _ctx.Sugerencias.Add(sugerencia);
-        }
+        //public void guardarSugerencia(Sugerencia sugerencia)
+        //{
+        //   _ctx.Sugerencias.Add(sugerencia);
+        //}
     }
 }
