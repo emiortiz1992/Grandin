@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using TIP_UNLAM_Backend.Data.Dto;
 using TIP_UNLAM_Backend.Data.EF;
 using TPI_UNLAM_Backend.Servicios.Interfaces;
+using SelectPdf;
 
 namespace TPI_UNLAM_Backend.Controllers.v1
 {
-    public class ProgresosXUsuarioXJuegoServicioController : Controller
+    public class ProgresosXUsuarioXJuegoController : Controller
     {
         private readonly IUsuarioXUsuarioServicio _userService;
         private readonly IUsuarioServicio _userServi;
         private readonly IProgresosXUsuarioXJuegoServicio _progreso;
 
-        public ProgresosXUsuarioXJuegoServicioController(IUsuarioXUsuarioServicio userService, IUsuarioServicio userServi, IProgresosXUsuarioXJuegoServicio progreso)
+        public ProgresosXUsuarioXJuegoController(IUsuarioXUsuarioServicio userService, IUsuarioServicio userServi, IProgresosXUsuarioXJuegoServicio progreso)
         {
             _userService = userService;
             _userServi = userServi;
@@ -47,6 +48,22 @@ namespace TPI_UNLAM_Backend.Controllers.v1
         public ActionResult<List<vProgresosXUsuarioXJuego>> getProgresoXProfesionalXPaciente(int pacienteId)
         {
             return _progreso.getProgresoXProfesionalXPaciente(pacienteId);
+        }
+
+        public FileResult GeneratePdf(string html)
+        {
+            html = html.Replace("strtTag", "<").Replace("EndTag", ">");
+
+            HtmlToPdf oHtmlToPdf = new HtmlToPdf();
+            PdfDocument oPdfDocument = oHtmlToPdf.ConvertHtmlString(html);
+            byte[] pdf = oPdfDocument.Save();
+            oPdfDocument.Close();
+
+            return File(
+                pdf,
+                "application/pdf",
+                "StudentList.pdf"
+                );
         }
 
     }
