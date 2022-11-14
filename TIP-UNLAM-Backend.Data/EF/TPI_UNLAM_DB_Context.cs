@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
 
 #nullable disable
 
@@ -10,7 +9,7 @@ namespace TIP_UNLAM_Backend.Data.EF
     public partial class TPI_UNLAM_DB_Context : DbContext
     {
         private readonly IConfiguration _configuration;
-       public TPI_UNLAM_DB_Context(IConfiguration configuration)
+        public TPI_UNLAM_DB_Context(IConfiguration configuration)
         {
             _configuration = configuration;
         }
@@ -116,6 +115,8 @@ namespace TIP_UNLAM_Backend.Data.EF
 
             modelBuilder.Entity<Nota>(entity =>
             {
+                entity.Property(e => e.Archivado).HasDefaultValueSql("((0))");
+
                 entity.Property(e => e.Fecha).HasColumnType("datetime");
 
                 entity.Property(e => e.Mensaje)
