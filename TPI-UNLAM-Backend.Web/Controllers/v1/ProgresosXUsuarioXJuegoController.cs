@@ -38,8 +38,8 @@ namespace TPI_UNLAM_Backend.Controllers.v1
             return _progreso.getAllProgresoXProfesional();
         }
 
-        [HttpGet("api/v1/ProgresoXPacienteXJuegoXProfesional")]
-        public ActionResult<vProgresosXUsuarioXJuego> getProgresoXPacienteXJuegoXProfesional(int pacienteId, int juegoid)
+        [HttpGet("api/v1/ProgresoXPacienteXJuegoXProfesional/{pacienteId}/{juegoid}")]
+        public ActionResult<List<vProgresosXUsuarioXJuego>> getProgresoXPacienteXJuegoXProfesional(int pacienteId, int juegoid)
         {
             return _progreso.getProgresoXPacienteXJuegoXProfesional(pacienteId, juegoid);
         }

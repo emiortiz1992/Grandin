@@ -53,7 +53,7 @@ namespace TPI_UNLAM_Backend.Servicios
 
       
 
-        public vProgresosXUsuarioXJuego getProgresoXPacienteXJuegoXProfesional(int pacienteId, int juegoid)
+        public List<vProgresosXUsuarioXJuego> getProgresoXPacienteXJuegoXProfesional(int pacienteId, int juegoid)
         {
             string mailProfesionalLogueado = _appSharedFunction.GetUsuarioPorToken();
 

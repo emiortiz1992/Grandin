@@ -13,7 +13,7 @@ namespace TIP_UNLAM_Backend.Data.Repositorios.Interfaces
         public List<vProgresosXUsuarioXJuego> getAllProgresoXPaciente(Usuario paciente);
         public List<vProgresosXUsuarioXJuego> getAllProgresoXProfesional(Usuario Profesional);
         public vProgresosXUsuarioXJuego getAllProgresoXPacienteXJuego(Usuario paciente, int juegoId);
-        public vProgresosXUsuarioXJuego getProgresoXPacienteXJuegoXProfesional(int pacienteId, int juegoId, Usuario profesional);
+        public List<vProgresosXUsuarioXJuego> getProgresoXPacienteXJuegoXProfesional(int pacienteId, int juegoId, Usuario profesional);
         public List<vProgresosXUsuarioXJuego> getProgresoXProfesionalXPaciente(int pacienteId, Usuario profesional);
         public void SaveChanges();
     }
